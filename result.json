@@ -1,0 +1,226 @@
+[
+  {
+    "input": "Generated_by_ChatExcel_table1.xls中，2022年北京与上海的量分别是多少",
+    "output": "!pip install pandas\n!pip install xlrd\nimport xlrd\nimport pandas as pd\nimport os\nprint(os.getcwd())  # 获取当前工作目录\nnotebook_dir= os.getcwd()  # 获取 Jupyter Notebook 的当前工作目录\nexcel_file = os.path.join(notebook_dir, 'Generated_by_ChatExcel_table1.xls')  # 拼接 Excel 文件的路径\ndf = pd.read_excel(excel_file)\nyear='2022年'\ncity1='北京'\ncity2='上海'\ncar_num_city1=df.loc[df['省份']==city1,year].values[0]\ncar_num_city2=df.loc[df['省份']==city2,year].values[0]\nprint(f'{year},{city1}的量为：{car_num_city1}')\nprint(f'{year},{city2}的量为：{car_num_city2}')"
+  },
+  {
+    "input": "Generated_by_ChatExcel_table1.xls中，江苏与广东的英文分别是什么",
+    "output": "!pip install pandas\n!pip install xlrd\nimport xlrd\nimport pandas as pd\nimport os\nprint(os.getcwd())  # 获取当前工作目录\nnotebook_dir= os.getcwd()  # 获取 Jupyter Notebook 的当前工作目录\nexcel_file = os.path.join(notebook_dir, 'Generated_by_ChatExcel_table1.xls')  # 拼接 Excel 文件的路径\ndf = pd.read_excel(excel_file)\nEnglish='英文'\ncity1='江苏'\ncity2='广东'\ncar_num_city1=df.loc[df['省份']==city1,English].values[0]\ncar_num_city2=df.loc[df['省份']==city2,English].values[0]\nprint(f'{city1}的英文为：{car_num_city1}')\nprint(f'{city2}的英文为：{car_num_city2}')"
+  },
+  {
+    "input": "Generated_by_ChatExcel_table1.xls中，河南、河北的名义增速分别是多少",
+    "output": "!pip install pandas\n!pip install xlrd\nimport xlrd\nimport pandas as pd\nimport os\nprint(os.getcwd())  # 获取当前工作目录\nnotebook_dir= os.getcwd()  # 获取 Jupyter Notebook 的当前工作目录\nexcel_file = os.path.join(notebook_dir, 'Generated_by_ChatExcel_table1.xls')  # 拼接 Excel 文件的路径\ndf = pd.read_excel(excel_file)\nnominal_growth_rate='名义增速'\ncity1='河南'\ncity2='河北'\ncar_num_city1=df.loc[df['省份']==city1,nominal_growth_rate].values[0]\ncar_num_city2=df.loc[df['省份']==city2,nominal_growth_rate].values[0]\nprint(f'{city1}的名义增速为：{car_num_city1}')\nprint(f'{city2}的名义增速为：{car_num_city2}')"
+  },
+  {
+    "input": "Generated_by_ChatExcel_table1.xls中，请为不同省份的名义增速以及实际增速做一张柱状图",
+    "output": "!pip install pandas\n!pip install xlrd\n!pip install matplotlib\nimport xlrd\nimport pandas as pd\nimport os\nimport matplotlib.pyplot as plt\nimport matplotlib\nmatplotlib.rc(\"font\",family='YouYuan')\nprint(os.getcwd())  # 获取当前工作目录\nnotebook_dir= os.getcwd()  # 获取 Jupyter Notebook 的当前工作目录\nexcel_file = os.path.join(notebook_dir, 'Generated_by_ChatExcel_table1.xls')  # 拼接 Excel 文件的路径\ndf = pd.read_excel(excel_file)\ndf.plot.bar(x='省份',y=['名义增速','实际增速'])\nplt.show()\n"
+  },
+  {
+    "input": "Generated_by_ChatExcel_table2.xls，求出每年增长人数，并发在最后",
+    "output": "!pip install pandas\n!pip install xlrd\n!pip install matplotlib\n!pip install xlwt\nimport xlrd\nimport pandas as pd\nimport os\nimport matplotlib.pyplot as plt\nimport matplotlib\nmatplotlib.rc(\"font\",family='YouYuan')\nprint(os.getcwd())  # 获取当前工作目录\nnotebook_dir= os.getcwd()  # 获取 Jupyter Notebook 的当前工作目录\nexcel_file = os.path.join(notebook_dir, 'Generated_by_ChatExcel_table2.xls')  # 拼接 Excel 文件的路径\ndf = pd.read_excel(excel_file)\ndf['2001年-2006年人口增长数']=df.iloc[:,3]-df.iloc[:,2]\ndf['2006年-2011年人口增长数']=df.iloc[:,4]-df.iloc[:,3]\ndf['2011年-2016年人口增长数']=df.iloc[:,5]-df.iloc[:,4]\ndf['2016年-2021年人口增长数']=df.iloc[:,6]-df.iloc[:,5]\ndf.to_excel(excel_file,index=False)\nprint(df)"
+  },
+  {
+    "input": "Generated_by_ChatExcel_table2.xls中，求每年人数变化率，并导入一个新的excel中",
+    "output": "!pip install pandas\n!pip install matplotlib\n!pip install seaborn\n!pip install xlwt\n!pip install numpy\nimport numpy as np\nimport xlwt\nimport seaborn as sns\nimport pandas as pd\nimport os\nimport matplotlib.pyplot as plt\nimport matplotlib\nmatplotlib.rc(\"font\",family='YouYuan')\nprint(os.getcwd())  # 获取当前工作目录\nnotebook_dir= os.getcwd()  # 获取 Jupyter Notebook 的当前工作目录\nexcel_file = os.path.join(notebook_dir, 'Generated_by_ChatExcel_table2.xls')  # 拼接 Excel 文件的路径\ndf = pd.read_excel(excel_file)\n#选取数据中需要的部分，先是列，后是行\ndata = df.iloc[0:,0:7]\n#给选取的数据列起个名字，方便后面使用\ndata.columns=['area','ad','2001','2006','2011','2016','2021']\n#新建一个excle文件用于存放结果\nworkbook = xlwt.Workbook(encoding='utf-8')\nbooksheet=workbook.add_sheet('Sheet 1',cell_overwrite_ok=True)\n#先加个表头\nbooksheet.write(0,0,'地区')   #0行0列\nbooksheet.write(0,1,'2006年') #0行1列\nbooksheet.write(0,2,'2011年') #0行2列\nbooksheet.write(0,3,'2016年')\nbooksheet.write(0,4,'2021年')\ncnt_row = 0\n#遍历每一行\nfor index,row in data.iterrows():\n    cnt_row = cnt_row+1\n    #计算总成绩\n    change1=float((row['2006']-row['2001'])/row['2001'])\n    change2=float((row['2011']-row['2006'])/row['2006'])\n    change3=float((row['2016']-row['2011'])/row['2011'])\n    change4=float((row['2021']-row['2016'])/row['2016'])\n    #将学号和总成绩存入新的excel文件中\n    booksheet.write(cnt_row,0,str(row['area'])) \n    booksheet.write(cnt_row,1,change1)          \n    booksheet.write(cnt_row,2,change2)\n    booksheet.write(cnt_row,3,change3)\n    booksheet.write(cnt_row,4,change4)\n#保存结果文件\nworkbook.save(excel_file+'-result.xls')"
+  },
+  {
+    "input": "Generated_by_ChatExcel_table2.xls-result.xls中，对每年的人口变化作热图",
+    "output": "!pip install pandas\n!pip install matplotlib\n!pip install seaborn\n!pip install xlwt\n!pip install nump\nimport numpy as np\nimport xlwt\nimport seaborn as sns\nimport pandas as pd\nimport os\nimport matplotlib.pyplot as plt\nimport matplotlib\nmatplotlib.rc(\"font\",family='YouYuan')\nprint(os.getcwd())  # 获取当前工作目录\nnotebook_dir= os.getcwd()  # 获取 Jupyter Notebook 的当前工作目录\nexcel_file = os.path.join(notebook_dir, 'Generated_by_ChatExcel_table2.xls-result.xls')  # 拼接 Excel 文件的路径\ndf = pd.read_excel(excel_file)\ndf.set_index('地区', inplace=True)\nax = sns.heatmap(df,annot=True,fmt='.0f',cmap=\"Blues\",vmax=-0.1, vmin=0.5)\n#  annot=True表示每一个格子显示数字;fmt='.0f'表示保留0位小数，同理fmt='.1f'表示保留一位小数\n#  camp表示颜色，在另一个博主的文章中讲解的很清晰\n#  vmax=350, vmin=20表示右侧颜色条的最大最小值，在最大最小值外的颜色将直接以最大或最小值的颜色显示，\n#  通过此设置就可以解决少数值过大从而使得大部分色块区别不明显的问题\n#  xticklabels=x_ticks, yticklabels=y_ticks，横纵轴标签\nax.set_title('各地区人口变化')  # 图标题\nax.set_xlabel('年份')  # x轴标题\nax.set_ylabel('地区')  # y轴标题\nplt.show()"
+  },
+  {
+    "input": "Generated_by_ChatExcel_table2.xls中，对历年人口求均值并放在最后一列",
+    "output": "!pip install pandas\n!pip install xlrd\n!pip install matplotlib\n!pip install xlwt\nimport xlrd\nimport pandas as pd\nimport os\nimport matplotlib.pyplot as plt\nimport matplotlib\nmatplotlib.rc(\"font\",family='YouYuan')\nprint(os.getcwd())  # 获取当前工作目录\nnotebook_dir= os.getcwd()  # 获取 Jupyter Notebook 的当前工作目录\nexcel_file = os.path.join(notebook_dir, 'Generated_by_ChatExcel_table2.xls')  # 拼接 Excel 文件的路径\ndf = pd.read_excel(excel_file)\ndf['人口均值']=df.iloc[:,2:].mean(axis=1)\ndf.to_excel(excel_file,index=False)\nprint(df)"
+  },
+  {
+    "input": "Generated_by_ChatExcel_table1.xls中，在省份前加上“中国-”",
+    "output": "!pip install pandas\n!pip install xlrd\n!pip install matplotlib\n!pip install xlwt\nimport xlrd\nimport pandas as pd\nimport os\nimport matplotlib.pyplot as plt\nimport matplotlib\nmatplotlib.rc(\"font\",family='YouYuan')\nprint(os.getcwd())  # 获取当前工作目录\nnotebook_dir= os.getcwd()  # 获取 Jupyter Notebook 的当前工作目录\nexcel_file = os.path.join(notebook_dir, 'Generated_by_ChatExcel_table1.xls')  # 拼接 Excel 文件的路径\ndf = pd.read_excel(excel_file)\ndf['省份'] = df['省份'].apply(lambda x:str('中国-'+str(x)))\ndf.to_excel(excel_file,index=False) \nprint(df)"
+  },
+  {
+    "input": "Generated_by_ChatExcel_table2.xls中，删除地区代码所在的列",
+    "output": "!pip install pandas\n!pip install xlrd\n!pip install matplotlib\n!pip install xlwt\nfrom openpyxl import* \nimport xlrd\nimport pandas as pd\nimport os\nimport matplotlib.pyplot as plt\nimport matplotlib\nmatplotlib.rc(\"font\",family='YouYuan')\nprint(os.getcwd())  # 获取当前工作目录\nnotebook_dir= os.getcwd()  # 获取 Jupyter Notebook 的当前工作目录\nexcel_file = os.path.join(notebook_dir, 'Generated_by_ChatExcel_table2.xls')  # 拼接 Excel 文件的路径\ndf = pd.read_excel(excel_file)\ndf=df.drop(df.columns[1],axis=1)\ndf.to_excel(excel_file,index=False)\nprint(df)"
+  },
+  {
+    "input": "Generated_by_ChatExcel_table1.xls中，为2021年以及2022年的量作与省份的折线图",
+    "output": "!pip install pandas\n!pip install xlrd\n!pip install matplotlib\n!pip install xlwt\nimport xlrd\nimport pandas as pd\nimport os\nimport matplotlib.pyplot as plt\nimport matplotlib\nmatplotlib.rc(\"font\",family='YouYuan')\nprint(os.getcwd())  # 获取当前工作目录\nnotebook_dir= os.getcwd()  # 获取 Jupyter Notebook 的当前工作目录\nexcel_file = os.path.join(notebook_dir, 'Generated_by_ChatExcel_table1.xls')  # 拼接 Excel 文件的路径\ndf = pd.read_excel(excel_file)\nplt.plot(df[\"省份\"],df[\"2022年\"],label='2022年',linewidth=3,color='r',marker='o',\nmarkerfacecolor='blue',markersize=12)\nplt.plot(df[\"省份\"],df[\"2021年\"],label='2021年',linewidth=3,color='y',marker='o',\nmarkerfacecolor='blue',markersize=12)\nplt.xlabel(\"省份\")\nplt.ylabel('量')\nplt.title(\"不同省份的量\")\nplt.legend()\nplt.grid()\nplt.show()"
+  },
+  {
+    "input": "Generated_by_ChatExcel_table1.xls中，为省份的英文加括号",
+    "output": "!pip install pandas\n!pip install xlrd\n!pip install matplotlib\n!pip install xlwt\nimport xlrd\nimport pandas as pd\nimport os\nimport matplotlib.pyplot as plt\nimport matplotlib\nmatplotlib.rc(\"font\",family='YouYuan')\nprint(os.getcwd())  # 获取当前工作目录\nnotebook_dir= os.getcwd()  # 获取 Jupyter Notebook 的当前工作目录\nexcel_file = os.path.join(notebook_dir, 'Generated_by_ChatExcel_table1.xls')  # 拼接 Excel 文件的路径\ndf = pd.read_excel(excel_file)\ndf['英文'] = df['英文'].apply(lambda x:str('('+str(x)+')'))"
+  },
+  {
+    "input": "Generated_by_ChatExcel_table2.xls，请给出不同地区近年来的人口增长数",
+    "output": "!pip install pandas\n!pip install matplotlib\n!pip install seaborn\n!pip install xlwt\n!pip install nump\nimport numpy as np\nimport xlwt\nimport seaborn as sns\nimport pandas as pd\nimport os\nimport matplotlib.pyplot as plt\nimport matplotlib\nmatplotlib.rc(\"font\",family='YouYuan')\nprint(os.getcwd())  # 获取当前工作目录\nnotebook_dir= os.getcwd()  # 获取 Jupyter Notebook 的当前工作目录\nexcel_file = os.path.join(notebook_dir, 'Generated_by_ChatExcel_table2.xls')  # 拼接 Excel 文件的路径\ndf = pd.read_excel(excel_file)\ndata = df.iloc[0:,0:7]\ndata.columns=['area','ad','2001','2006','2011','2016','2021']\ncnt_row = 0\n#遍历每一行\nfor index,row in data.iterrows():\n    cnt_row = cnt_row+1\n    rise=int(row['2021']-row['2016'])\n    print('{}的人口增长数为：{}'.format(str(row['area']),rise))"
+  },
+  {
+    "input": "Generated_by_ChatExcel_table3.xls中，请给出不同地区出现的次数并按降序排列",
+    "output": "!pip install pandas\n!pip install matplotlib\n!pip install seaborn\n!pip install xlwt\n!pip install nump\nimport numpy as np\nimport xlwt\nimport seaborn as sns\nimport pandas as pd\nimport os\nimport matplotlib.pyplot as plt\nimport matplotlib\nmatplotlib.rc(\"font\",family='YouYuan')\nprint(os.getcwd())  # 获取当前工作目录\nnotebook_dir= os.getcwd()  # 获取 Jupyter Notebook 的当前工作目录\nexcel_file = os.path.join(notebook_dir, 'Generated_by_ChatExcel_table3.xls')  # 拼接 Excel 文件的路径\ndf = pd.read_excel(excel_file)\ncolumn_counts=df['地区'].value_counts()\nprint(column_counts)"
+  },
+  {
+    "input": "Generated_by_ChatExcel_table3.xls中，请绘制各学校在学术声誉,雇主声誉,每位教员引用率,师生比四个方面中的评分柱状图，每种类型的评分使用不同颜色表示。",
+    "output": "!pip install pandas\n!pip install matplotlib\n!pip install seaborn\n!pip install xlwt\n!pip install nump\nimport numpy as np\nimport xlwt\nimport seaborn as sns\nimport pandas as pd\nimport os\nimport matplotlib.pyplot as plt\nimport matplotlib\nmatplotlib.rc(\"font\",family='YouYuan')\nprint(os.getcwd())  # 获取当前工作目录\nnotebook_dir= os.getcwd()  # 获取 Jupyter Notebook 的当前工作目录\nexcel_file = os.path.join(notebook_dir, 'Generated_by_ChatExcel_table3.xls')  # 拼接 Excel 文件的路径\ndf = pd.read_excel(excel_file)\ndf['total']=df['学术声誉']+df['雇主声誉']+df['每位教员引用率']+df['师生比']\ndf.sort_values(by='total',inplace=True,ascending=False)\ndf.plot.bar(x='学校名称',y=['学术声誉','雇主声誉','每位教员引用率','师生比'],stacked=True,title='学校得分')\nplt.tight_layout()\nplt.show()"
+  },
+  {
+    "input": "Generated_by_ChatExcel_table1.xls中，请为2022年各省的量作饼状图",
+    "output": "!pip install pandas\n!pip install matplotlib\n!pip install seaborn\n!pip install xlwt\n!pip install nump\nimport numpy as np\nimport xlwt\nimport seaborn as sns\nimport pandas as pd\nimport os\nimport matplotlib.pyplot as plt\nimport matplotlib\nmatplotlib.rc(\"font\",family='YouYuan')\nprint(os.getcwd())  # 获取当前工作目录\nnotebook_dir= os.getcwd()  # 获取 Jupyter Notebook 的当前工作目录\nexcel_file = os.path.join(notebook_dir, 'Generated_by_ChatExcel_table1.xls')  # 拼接 Excel 文件的路径\ndf = pd.read_excel(excel_file)\nplt.pie(df['2022年'],labels=df['省份'],labeldistance=1.1,autopct='%1.1f%%',pctdistance=0.8,startangle=90,radius=10)\nplt.title('2022年全国各省的量分布')\nplt.axis('equal')\nplt.tight_layout()\nplt.show()"
+  },
+  {
+    "input": "Generated_by_ChatExcel_table3.xls中，分别给出芝加哥大学以及北京大学的综合得分",
+    "output": "!pip install pandas\n!pip install xlwt\nimport xlwt\nimport pandas as pd\nimport os\nmatplotlib.rc(\"font\",family='YouYuan')\nprint(os.getcwd())  # 获取当前工作目录\nnotebook_dir= os.getcwd()  # 获取 Jupyter Notebook 的当前工作目录\nexcel_file = os.path.join(notebook_dir, 'Generated_by_ChatExcel_table3.xls')  # 拼接 Excel 文件的路径\ndf = pd.read_excel(excel_file)\nscore='综合得分'\nschool1='芝加哥大学'\nschool2='北京大学'\ncar_num_school1=df.loc[df['学校名称']==school1,score].values[0]\ncar_num_school2=df.loc[df['学校名称']==school2,score].values[0]\nprint(f'{school1}的{score}为：{car_num_school1}')\nprint(f'{school2}的{score}为：{car_num_school2}')"
+  },
+  {
+    "input": "excel常用练习素材1.xls中，使用堆叠柱状图比较不同学生的平时成绩、实验成绩以及期末考试成绩",
+    "output": "!pip install pandas\n!pip install xlwt\nimport xlwt\nimport pandas as pd\nimport os\nmatplotlib.rc(\"font\",family='YouYuan')\nprint(os.getcwd())  # 获取当前工作目录\nnotebook_dir= os.getcwd()  # 获取 Jupyter Notebook 的当前工作目录\nexcel_file = os.path.join(notebook_dir, 'excel常用练习素材1.xls')  # 拼接 Excel 文件的路径\ndf = pd.read_excel(excel_file,header=2)\ndf['total']=df['平时成绩']+df['实验成绩']+df['期末考试']\ndf.sort_values(by='total',inplace=True,ascending=False)\ndf.plot.bar(x='学生姓名',y=['平时成绩','实验成绩','期末考试'],stacked=True,title='综合得分')\nplt.tight_layout()\nplt.show()"
+  },
+  {
+    "input": "excel常用练习素材1.xls，对表格按期末考试成绩排序",
+    "output": "!pip install pandas\n!pip install xlwt\nimport xlwt\nimport pandas as pd\nimport os\nmatplotlib.rc(\"font\",family='YouYuan')\nprint(os.getcwd())  # 获取当前工作目录\nnotebook_dir= os.getcwd()  # 获取 Jupyter Notebook 的当前工作目录\nexcel_file = os.path.join(notebook_dir, 'excel常用练习素材1.xls')  # 拼接 Excel 文件的路径\ndf = pd.read_excel(excel_file,header=2)\ndf.sort_values(by='期末考试',inplace=True,ascending=False)#按期末考试排序\nprint(df)"
+  },
+  {
+    "input": "excel常用练习素材1.xls中，请求出学生的综合成绩，并放在最后一列",
+    "output": "!pip install pandas\n!pip install xlwt\nimport xlwt\nimport pandas as pd\nimport os\nmatplotlib.rc(\"font\",family='YouYuan')\nprint(os.getcwd())  # 获取当前工作目录\nnotebook_dir= os.getcwd()  # 获取 Jupyter Notebook 的当前工作目录\nexcel_file = os.path.join(notebook_dir, 'excel常用练习素材1.xls')  # 拼接 Excel 文件的路径\ndf = pd.read_excel(excel_file,header=2)\ndf['综合成绩']=df.iloc[:,3:].sum(axis=1)\ndf.to_excel(excel_file,index=False)\nprint(df)"
+  },
+  {
+    "input": "excel常用练习素材1.xls中，请表示出夏冬的实验成绩",
+    "output": "!pip install pandas\n!pip install xlwt\nimport xlwt\nimport pandas as pd\nimport os\nmatplotlib.rc(\"font\",family='YouYuan')\nprint(os.getcwd())  # 获取当前工作目录\nnotebook_dir= os.getcwd()  # 获取 Jupyter Notebook 的当前工作目录\nexcel_file = os.path.join(notebook_dir, 'excel常用练习素材1.xls')  # 拼接 Excel 文件的路径\ndf = pd.read_excel(excel_file,header=2)\nscore='实验成绩'\nstudent='夏冬'\ncar_num_student=df.loc[df['学生姓名']==student,score].values[0]\nprint(f'{student}的{score}为：{car_num_student}')"
+  },
+  {
+    "input": "excel常用练习素材1.xls中，请为学生的期末考试成绩作柱状图",
+    "output": "!pip install pandas\n!pip install xlwt\n!pip install xlrd\n!pip install nump\nimport xlrd\nimport xlwt\nimport pandas as pd\nimport os\nimport numpy as np\nmatplotlib.rc(\"font\",family='YouYuan')\nprint(os.getcwd())  # 获取当前工作目录\nnotebook_dir= os.getcwd()  # 获取 Jupyter Notebook 的当前工作目录\nexcel_file = os.path.join(notebook_dir, 'excel常用练习素材1.xls')  # 拼接 Excel 文件的路径\ndf = pd.read_excel(excel_file,header=2)\ndf.plot.bar(x='学生姓名',y='期末考试')\nplt.show()"
+  },
+  {
+    "input": "EXCEL练习(共有12个数据表).xls中，请给出工作表Excel排版中人民农场的小麦产量",
+    "output": "!pip install pandas\n!pip install xlwt\n!pip install xlrd\n!pip install nump\nimport xlrd\nimport xlwt\nimport pandas as pd\nimport os\nimport numpy as np\nmatplotlib.rc(\"font\",family='YouYuan')\nprint(os.getcwd())  # 获取当前工作目录\nnotebook_dir= os.getcwd()  # 获取 Jupyter Notebook 的当前工作目录\nexcel_file = os.path.join(notebook_dir,'EXCEL练习(共有12个数据表).xls')  # 拼接 Excel 文件的路径\ndf = pd.read_excel(excel_file,sheet_name='Excel排版',header=7)\nxiaomai='小麦'\ndanwei='人民农场'\ncar_num_danwei=df.loc[df['单位']==danwei,xiaomai].values[0]\nprint(f'{danwei}的{xiaomai}为：{car_num_danwei}')"
+  },
+  {
+    "input": "EXCEL练习(共有12个数据表).xls中，请给出工作表Excel排版中番薯和小麦随单位变化的折线图",
+    "output": "!pip install pandas\n!pip install xlwt\n!pip install xlrd\n!pip install nump\nimport xlrd\nimport xlwt\nimport pandas as pd\nimport os\nimport numpy as np\nmatplotlib.rc(\"font\",family='YouYuan')\nprint(os.getcwd())  # 获取当前工作目录\nnotebook_dir= os.getcwd()  # 获取 Jupyter Notebook 的当前工作目录\nexcel_file = os.path.join(notebook_dir,'EXCEL练习(共有12个数据表).xls')  # 拼接 Excel 文件的路径\ndf = pd.read_excel(excel_file,sheet_name='Excel排版',header=7)\nplt.plot(df[\"单位\"],df[\"番薯\"],label='番薯',linewidth=3,color='r',marker='o',\nmarkerfacecolor='blue',markersize=12)\nplt.plot(df[\"单位\"],df[\"小麦\"],label='小麦',linewidth=3,color='y',marker='o',\nmarkerfacecolor='blue',markersize=12)\nplt.xlabel(\"单位\")\nplt.ylabel('产量')\nplt.title(\"不同单位的农作物产量\")\nplt.legend()\nplt.grid()\nplt.show()"
+  },
+  {
+    "input": "EXCEL练习(共有12个数据表).xls，请对工作表“Excel排版”按所属集团以及大豆产量排序",
+    "output": "!pip install pandas\n!pip install xlwt\n!pip install xlrd\n!pip install nump\nimport xlrd\nimport xlwt\nimport pandas as pd\nimport os\nimport numpy as np\nmatplotlib.rc(\"font\",family='YouYuan')\nprint(os.getcwd())  # 获取当前工作目录\nnotebook_dir= os.getcwd()  # 获取 Jupyter Notebook 的当前工作目录\nexcel_file = os.path.join(notebook_dir,'EXCEL练习(共有12个数据表).xls')  # 拼接 Excel 文件的路径\ndf = pd.read_excel(excel_file,sheet_name='Excel排版',header=7)\ndf.sort_values(by=['所属集团','大豆'],inplace=True,ascending=False)#按所属集团，大豆排序\nprint(df)"
+  },
+  {
+    "input": "EXCEL练习(共有12个数据表).xls中，请对工作表“数据有效性”的高等数学以及公文写作作与姓名的横向柱状图",
+    "output": "!pip install pandas\n!pip install xlwt\n!pip install xlrd\n!pip install nump\nimport xlrd\nimport xlwt\nimport pandas as pd\nimport os\nimport numpy as np\nmatplotlib.rc(\"font\",family='YouYuan')\nprint(os.getcwd())  # 获取当前工作目录\nnotebook_dir= os.getcwd()  # 获取 Jupyter Notebook 的当前工作目录\nexcel_file = os.path.join(notebook_dir,'EXCEL练习(共有12个数据表).xls')  # 拼接 Excel 文件的路径\ndf = pd.read_excel(excel_file,sheet_name='数据有效性',header=6)\ndf.plot.barh(x='姓名',y=['高等数学','公文写作'])\nplt.show()"
+  },
+  {
+    "input": "EXCEL练习(共有12个数据表).xls中，请给出工作表“数据有效性”大学英语的最大值",
+    "output": "!pip install pandas\n!pip install xlwt\n!pip install xlrd\n!pip install nump\nimport xlrd\nimport xlwt\nimport pandas as pd\nimport os\nimport numpy as np\nmatplotlib.rc(\"font\",family='YouYuan')\nprint(os.getcwd())  # 获取当前工作目录\nnotebook_dir= os.getcwd()  # 获取 Jupyter Notebook 的当前工作目录\nexcel_file = os.path.join(notebook_dir,'EXCEL练习(共有12个数据表).xls')  # 拼接 Excel 文件的路径\ndf = pd.read_excel(excel_file,sheet_name='数据有效性',header=6)\nmax_value=df['大学英语'].max()\nprint(f'大学英语的最大值为：{max_value}')"
+  },
+  {
+    "input": "EXCEL练习(共有12个数据表).xls中，请给出工作表“数据有效性”的综合成绩并放在最后一列",
+    "output": "!pip install xlwt\n!pip install xlrd\n!pip install nump\nimport xlrd\nimport xlwt\nimport pandas as pd\nimport os\nimport numpy as np\nmatplotlib.rc(\"font\",family='YouYuan')\nprint(os.getcwd())  # 获取当前工作目录\nnotebook_dir= os.getcwd()  # 获取 Jupyter Notebook 的当前工作目录\nexcel_file = os.path.join(notebook_dir,'EXCEL练习(共有12个数据表).xls')  # 拼接 Excel 文件的路径\ndf = pd.read_excel(excel_file,sheet_name='数据有效性',header=6)\ndf['综合成绩']=df.iloc[:,5:].sum(axis=1)\ndf.to_excel(excel_file,index=False)\nprint(df)"
+  },
+  {
+    "input": "EXCEL练习(共有12个数据表).xls中，请给出工作表“教职工简介”石惊的编号、性别、出生年月、职称以及基本工资",
+    "output": "!pip install xlwt\n!pip install xlrd\n!pip install nump\nimport xlrd\nimport xlwt\nimport pandas as pd\nimport os\nimport numpy as np\nmatplotlib.rc(\"font\",family='YouYuan')\nprint(os.getcwd())  # 获取当前工作目录\nnotebook_dir= os.getcwd()  # 获取 Jupyter Notebook 的当前工作目录\nexcel_file = os.path.join(notebook_dir,'EXCEL练习(共有12个数据表).xls')  # 拼接 Excel 文件的路径\ndf = pd.read_excel(excel_file,sheet_name='教职工简介',header=5)\nname='石惊'\nbianhao='编号'\nsex='性别'\nbirth='出生年月'\nzhicheng='职称'\ngongzi='基本工资'\ncar_num_name_bianhao=df.loc[df['姓名']==name,bianhao].values[0]\ncar_num_name_sex=df.loc[df['姓名']==name,sex].values[0]\ncar_num_name_birth=df.loc[df['姓名']==name,birth].values[0]\ncar_num_name_zhicheng=df.loc[df['姓名']==name,zhicheng].values[0]\ncar_num_name_gongzi=df.loc[df['姓名']==name,gongzi].values[0]\nprint(f'{name}的{bianhao}为：{car_num_name_bianhao}')\nprint(f'{name}的{sex}为：{car_num_name_sex}')\nprint(f'{name}的{birth}为：{car_num_name_birth}')\nprint(f'{name}的{zhicheng}为：{car_num_name_zhicheng}')\nprint(f'{name}的{gongzi}为：{car_num_name_gongzi}')"
+  },
+  {
+    "input": "EXCEL练习(共有12个数据表).xls中，请给出工作表“教职工简介”中基本工资在1000以上的数量",
+    "output": "!pip install xlwt\n!pip install xlrd\n!pip install nump\nimport xlrd\nimport xlwt\nimport pandas as pd\nimport os\nimport numpy as np\nmatplotlib.rc(\"font\",family='YouYuan')\nprint(os.getcwd())  # 获取当前工作目录\nnotebook_dir= os.getcwd()  # 获取 Jupyter Notebook 的当前工作目录\nexcel_file = os.path.join(notebook_dir,'EXCEL练习(共有12个数据表).xls')  # 拼接 Excel 文件的路径\ndf = pd.read_excel(excel_file,sheet_name='教职工简介',header=5)\n#选取数据中需要的部分，先是列，后是行\ndata = df.iloc[0:,6:7]\n#给选取的数据列起个名字，方便后面使用\ndata.columns=['gongzi']\ncnt_row = 0\nn=0\n#遍历每一行\nfor index,row in data.iterrows():\n    cnt_row = cnt_row+1\n    if row['gongzi']>=1000:\n        n=n+1\nprint(f'基本工资在1000以上的数量为：{n}')  "
+  },
+  {
+    "input": "EXCEL练习(共有12个数据表).xls中，请为工作表“教职工简介”做基本工资与姓名的饼状图",
+    "output": "!pip install xlwt\n!pip install xlrd\n!pip install nump\nimport xlrd\nimport xlwt\nimport pandas as pd\nimport os\nimport numpy as np\nmatplotlib.rc(\"font\",family='YouYuan')\nprint(os.getcwd())  # 获取当前工作目录\nnotebook_dir= os.getcwd()  # 获取 Jupyter Notebook 的当前工作目录\nexcel_file = os.path.join(notebook_dir,'EXCEL练习(共有12个数据表).xls')  # 拼接 Excel 文件的路径\ndf = pd.read_excel(excel_file,sheet_name='教职工简介',header=5)\nplt.pie(df['基本工资'],labels=df['姓名'],labeldistance=1.1,autopct='%1.1f%%')\nplt.title('教职工基本工资分布')\nplt.axis('equal')\nplt.tight_layout()\nplt.show()"
+  },
+  {
+    "input": "EXCEL练习(共有12个数据表).xls中，请为工作表“教职工简介”获取【7,3】以及【4,2】单元格的值",
+    "output": "!pip install xlwt\n!pip install xlrd\n!pip install nump\nimport xlrd\nimport xlwt\nimport pandas as pd\nimport os\nimport numpy as np\nmatplotlib.rc(\"font\",family='YouYuan')\nprint(os.getcwd())  # 获取当前工作目录\nnotebook_dir= os.getcwd()  # 获取 Jupyter Notebook 的当前工作目录\nexcel_file = os.path.join(notebook_dir,'EXCEL练习(共有12个数据表).xls')  # 拼接 Excel 文件的路径\ndf = pd.read_excel(excel_file,sheet_name='教职工简介',header=4)\n#获取指定单元格的值\none =df.iloc[3,3]\ntwo =df.iloc[0,2]\nprint(one,two)"
+  },
+  {
+    "input": "EXCEL练习(共有12个数据表).xls中，请为工作表“教职工简介”获取所有的表中数据，返回一个list",
+    "output": "!pip install xlwt\n!pip install xlrd\n!pip install nump\nimport xlrd\nimport xlwt\nimport pandas as pd\nimport os\nimport numpy as np\nmatplotlib.rc(\"font\",family='YouYuan')\nprint(os.getcwd())  # 获取当前工作目录\nnotebook_dir= os.getcwd()  # 获取 Jupyter Notebook 的当前工作目录\nexcel_file = os.path.join(notebook_dir,'EXCEL练习(共有12个数据表).xls')  # 拼接 Excel 文件的路径\ndf = pd.read_excel(excel_file,sheet_name='教职工简介',header=4)\nvalue = df.values\nprint(value)"
+  },
+  {
+    "input": "EXCEL练习(共有12个数据表).xls中，请对工作表“条件函数”输出第1行的数据",
+    "output": "!pip install xlwt\n!pip install xlrd\n!pip install nump\nimport xlrd\nimport xlwt\nimport pandas as pd\nimport os\nimport numpy as np\nmatplotlib.rc(\"font\",family='YouYuan')\nprint(os.getcwd())  # 获取当前工作目录\nnotebook_dir= os.getcwd()  # 获取 Jupyter Notebook 的当前工作目录\nexcel_file = os.path.join(notebook_dir,'EXCEL练习(共有12个数据表).xls')  # 拼接 Excel 文件的路径\ndf = pd.read_excel(excel_file,sheet_name='条件函数',header=4)\ndata = df.iloc[0].values\nprint(data)"
+  },
+  {
+    "input": "EXCEL练习(共有12个数据表).xls中，请对工作表“作图”输出行号和列号",
+    "output": "!pip install xlwt\n!pip install xlrd\n!pip install nump\nimport xlrd\nimport xlwt\nimport pandas as pd\nimport os\nimport numpy as np\nmatplotlib.rc(\"font\",family='YouYuan')\nprint(os.getcwd())  # 获取当前工作目录\nnotebook_dir= os.getcwd()  # 获取 Jupyter Notebook 的当前工作目录\nexcel_file = os.path.join(notebook_dir,'EXCEL练习(共有12个数据表).xls')  # 拼接 Excel 文件的路径\ndf = pd.read_excel(excel_file,sheet_name='作图',header=8)\n#输出行号和列号\nprint(\"输出行号列表\",df.index.values)\nprint(\"输出列好列表\",df.columns.values)"
+  },
+  {
+    "input": "EXCEL练习(共有12个数据表).xls中，请对工作表“作图”求市价变化",
+    "output": "!pip install xlwt\n!pip install xlrd\n!pip install nump\nimport xlrd\nimport xlwt\nimport pandas as pd\nimport os\nimport numpy as np\nmatplotlib.rc(\"font\",family='YouYuan')\nprint(os.getcwd())  # 获取当前工作目录\nnotebook_dir= os.getcwd()  # 获取 Jupyter Notebook 的当前工作目录\nexcel_file = os.path.join(notebook_dir,'EXCEL练习(共有12个数据表).xls')  # 拼接 Excel 文件的路径\ndf = pd.read_excel(excel_file,sheet_name='作图',header=8)\ndf['市价变化']=df['今收市价']-df['昨收市价']\nprint(df)"
+  },
+  {
+    "input": "EXCEL练习(共有12个数据表).xls中，请对工作表“作图”求市价变化并放在最后一列",
+    "output": "!pip install xlwt\n!pip install xlrd\n!pip install nump\nimport xlrd\nimport xlwt\nimport pandas as pd\nimport os\nimport numpy as np\nmatplotlib.rc(\"font\",family='YouYuan')\nprint(os.getcwd())  # 获取当前工作目录\nnotebook_dir= os.getcwd()  # 获取 Jupyter Notebook 的当前工作目录\nexcel_file = os.path.join(notebook_dir,'EXCEL练习(共有12个数据表).xls')  # 拼接 Excel 文件的路径\ndf = pd.read_excel(excel_file,sheet_name='作图',header=8)\ndf['市价变化']=df['今收市价']-df['昨收市价']\ndf.to_excel(excel_file,index=False)\nprint(df)"
+  },
+  {
+    "input": "EXCEL练习(共有12个数据表).xls中，请对工作表“作图”做今收市价与企业名称的横向柱状图",
+    "output": "!pip install xlwt\n!pip install xlrd\n!pip install nump\nimport xlrd\nimport xlwt\nimport pandas as pd\nimport os\nimport numpy as np\nmatplotlib.rc(\"font\",family='YouYuan')\nprint(os.getcwd())  # 获取当前工作目录\nnotebook_dir= os.getcwd()  # 获取 Jupyter Notebook 的当前工作目录\nexcel_file = os.path.join(notebook_dir,'EXCEL练习(共有12个数据表).xls')  # 拼接 Excel 文件的路径\ndf = pd.read_excel(excel_file,sheet_name='作图',header=8)\ndf.plot.barh(x='名称',y='今收市价')\nplt.show()"
+  },
+  {
+    "input": "EXCEL练习(共有12个数据表).xls中，请对工作表“作图”以今收市价排序",
+    "output": "!pip install xlwt\n!pip install xlrd\n!pip install nump\nimport xlrd\nimport xlwt\nimport pandas as pd\nimport os\nimport numpy as np\nmatplotlib.rc(\"font\",family='YouYuan')\nprint(os.getcwd())  # 获取当前工作目录\nnotebook_dir= os.getcwd()  # 获取 Jupyter Notebook 的当前工作目录\nexcel_file = os.path.join(notebook_dir,'EXCEL练习(共有12个数据表).xls')  # 拼接 Excel 文件的路径\ndf = pd.read_excel(excel_file,sheet_name='作图',header=8)\ndf.sort_values(by='今收市价',inplace=True,ascending=False)\nprint(df)"
+  },
+  {
+    "input": "EXCEL练习(共有12个数据表).xls中，请对工作表“排序”将系别改为学科",
+    "output": "!pip install xlwt\n!pip install xlrd\n!pip install nump\nimport xlrd\nimport xlwt\nimport pandas as pd\nimport os\nimport numpy as np\nmatplotlib.rc(\"font\",family='YouYuan')\nprint(os.getcwd())  # 获取当前工作目录\nnotebook_dir= os.getcwd()  # 获取 Jupyter Notebook 的当前工作目录\nexcel_file = os.path.join(notebook_dir,'EXCEL练习(共有12个数据表).xls')  # 拼接 Excel 文件的路径\ndf = pd.read_excel(excel_file,sheet_name='排序',header=5)\ndf.rename(columns={\"系别\":\"学科\"},inplace=True)\nprint(df)"
+  },
+  {
+    "input": "EXCEL练习(共有12个数据表).xls中，请对工作表“排序”以性别以及篇数排序",
+    "output": "!pip install xlwt\n!pip install xlrd\n!pip install nump\nimport xlrd\nimport xlwt\nimport pandas as pd\nimport os\nimport numpy as np\nmatplotlib.rc(\"font\",family='YouYuan')\nprint(os.getcwd())  # 获取当前工作目录\nnotebook_dir= os.getcwd()  # 获取 Jupyter Notebook 的当前工作目录\nexcel_file = os.path.join(notebook_dir,'EXCEL练习(共有12个数据表).xls')  # 拼接 Excel 文件的路径\ndf = pd.read_excel(excel_file,sheet_name='排序',header=5)\ndf.sort_values(by=['性别','篇数'],inplace=True,ascending=False)\nprint(df)"
+  },
+  {
+    "input": "EXCEL练习(共有12个数据表).xls中，请对工作表“排序”中发表篇数绘制饼状图以及环形图",
+    "output": "!pip install xlwt\n!pip install xlrd\n!pip install nump\nimport xlrd\nimport xlwt\nimport pandas as pd\nimport os\nimport numpy as np\nmatplotlib.rc(\"font\",family='YouYuan')\nprint(os.getcwd())  # 获取当前工作目录\nnotebook_dir= os.getcwd()  # 获取 Jupyter Notebook 的当前工作目录\nexcel_file = os.path.join(notebook_dir,'EXCEL练习(共有12个数据表).xls')  # 拼接 Excel 文件的路径\ndf = pd.read_excel(excel_file,sheet_name='排序',header=5)\nplt.pie(df['篇数'],labels=df['姓名'],labeldistance=1.1,autopct='%1.1f%%')\nfig, ax = plt.subplots(figsize=(6, 6))\nax.pie(df['篇数'],labels=df['姓名'], \n       wedgeprops={'width':0.3}, \n       startangle=90, \n       colors=['#5DADE2', '#515A5A'])\nplt.title('教职工发表篇数分布')\nplt.axis('equal')\nplt.tight_layout()\nplt.show()"
+  },
+  {
+    "input": "EXCEL练习(共有12个数据表).xls中，请对工作表“排序”选出篇数在20以上的人",
+    "output": "!pip install xlwt\n!pip install xlrd\n!pip install nump\nimport xlrd\nimport xlwt\nimport pandas as pd\nimport os\nimport numpy as np\nmatplotlib.rc(\"font\",family='YouYuan')\nprint(os.getcwd())  # 获取当前工作目录\nnotebook_dir= os.getcwd()  # 获取 Jupyter Notebook 的当前工作目录\nexcel_file = os.path.join(notebook_dir,'EXCEL练习(共有12个数据表).xls')  # 拼接 Excel 文件的路径\ndf = pd.read_excel(excel_file,sheet_name='排序',header=5)\n#选取数据中需要的部分，先是列，后是行\ndata = df.iloc[0:,0:7]\n#给选取的数据列起个名字，方便后面使用\ndata.columns=['code','name','sex','birth','xibie','zhicheng','num']\ncnt_row = 0\n#遍历每一行\nfor index,row in data.iterrows():\n    cnt_row = cnt_row+1\n    if row['num']>20:\n        print(str(row['name']))"
+  },
+  {
+    "input": "EXCEL练习(共有12个数据表).xls中，请对工作表“筛选”绘制年龄与工资的散点图",
+    "output": "!pip install xlwt\n!pip install xlrd\n!pip install nump\nimport xlrd\nimport xlwt\nimport pandas as pd\nimport os\nimport numpy as np\nmatplotlib.rc(\"font\",family='YouYuan')\nprint(os.getcwd())  # 获取当前工作目录\nnotebook_dir= os.getcwd()  # 获取 Jupyter Notebook 的当前工作目录\nexcel_file = os.path.join(notebook_dir,'EXCEL练习(共有12个数据表).xls')  # 拼接 Excel 文件的路径\ndf = pd.read_excel(excel_file,sheet_name='筛选',header=3)\n#设置 x值 和y值的列表\nplt.scatter(df['年龄'],df['工资'])\n# 图表名称\n# 设置x轴名称\nplt.xlabel(\"年龄\")\n# 设置y轴名称\nplt.ylabel(\"工资\")\nplt.show()"
+  },
+  {
+    "input": "EXCEL练习(共有12个数据表).xls中，请对工作表“筛选”求工资的平均数",
+    "output": "!pip install xlwt\n!pip install xlrd\n!pip install nump\nimport xlrd\nimport xlwt\nimport pandas as pd\nimport os\nimport numpy as np\nmatplotlib.rc(\"font\",family='YouYuan')\nprint(os.getcwd())  # 获取当前工作目录\nnotebook_dir= os.getcwd()  # 获取 Jupyter Notebook 的当前工作目录\nexcel_file = os.path.join(notebook_dir,'EXCEL练习(共有12个数据表).xls')  # 拼接 Excel 文件的路径\ndf = pd.read_excel(excel_file,sheet_name='筛选',header=3)\ndata = df.iloc[0:,4]\navg=data.mean()\nprint(avg)"
+  },
+  {
+    "input": "EXCEL练习(共有12个数据表).xls中，请对工作表“筛选”求工资的中位数",
+    "output": "!pip install xlwt\n!pip install xlrd\n!pip install nump\nimport xlrd\nimport xlwt\nimport pandas as pd\nimport os\nimport numpy as np\nmatplotlib.rc(\"font\",family='YouYuan')\nprint(os.getcwd())  # 获取当前工作目录\nnotebook_dir= os.getcwd()  # 获取 Jupyter Notebook 的当前工作目录\nexcel_file = os.path.join(notebook_dir,'EXCEL练习(共有12个数据表).xls')  # 拼接 Excel 文件的路径\ndf = pd.read_excel(excel_file,sheet_name='筛选',header=3)\nmedian=df['工资'].median()\nprint('工资的中位数为:',median)"
+  },
+  {
+    "input": "EXCEL练习(共有12个数据表).xls中，请对工作表“筛选”求工资的方差",
+    "output": "!pip install xlwt\n!pip install xlrd\n!pip install nump\nimport xlrd\nimport xlwt\nimport pandas as pd\nimport os\nimport numpy as np\nmatplotlib.rc(\"font\",family='YouYuan')\nprint(os.getcwd())  # 获取当前工作目录\nnotebook_dir= os.getcwd()  # 获取 Jupyter Notebook 的当前工作目录\nexcel_file = os.path.join(notebook_dir,'EXCEL练习(共有12个数据表).xls')  # 拼接 Excel 文件的路径\ndf = pd.read_excel(excel_file,sheet_name='筛选',header=3)\nvar=df['工资'].var()\nprint('工资的方差为:',var)"
+  },
+  {
+    "input": "EXCEL练习(共有12个数据表).xls中，请对工作表“筛选”求工资最大的人的信息",
+    "output": "!pip install xlwt\n!pip install xlrd\n!pip install nump\nimport xlrd\nimport xlwt\nimport pandas as pd\nimport os\nimport numpy as np\nmatplotlib.rc(\"font\",family='YouYuan')\nprint(os.getcwd())  # 获取当前工作目录\nnotebook_dir= os.getcwd()  # 获取 Jupyter Notebook 的当前工作目录\nexcel_file = os.path.join(notebook_dir,'EXCEL练习(共有12个数据表).xls')  # 拼接 Excel 文件的路径\ndf = pd.read_excel(excel_file,sheet_name='筛选',header=3)\ngongzi_max = df['工资'].max()\ngongzi_max_index = df['工资'].idxmax()\ngongzi_max _row= df.loc[gongzi_max_index]\nprint(gongzi_max_row)"
+  },
+  {
+    "input": "EXCEL练习(共有12个数据表).xls中，请对工作表“分类汇总”分别给出各系捐款人数最大值",
+    "output": "!pip install xlwt\n!pip install xlrd\n!pip install nump\nimport xlrd\nimport xlwt\nimport pandas as pd\nimport os\nimport numpy as np\nmatplotlib.rc(\"font\",family='YouYuan')\nprint(os.getcwd())  # 获取当前工作目录\nnotebook_dir= os.getcwd()  # 获取 Jupyter Notebook 的当前工作目录\nexcel_file = os.path.join(notebook_dir,'EXCEL练习(共有12个数据表).xls')  # 拼接 Excel 文件的路径\ndf = pd.read_excel(excel_file,sheet_name='分类汇总',header=5)\ndata=df.groupby('系别')['人数'].max()\nprint(data)"
+  },
+  {
+    "input": "EXCEL练习(共有12个数据表).xls中，请对工作表“分类汇总”求平均捐款额",
+    "output": "!pip install xlwt\n!pip install xlrd\n!pip install nump\nimport xlrd\nimport xlwt\nimport pandas as pd\nimport os\nimport numpy as np\nmatplotlib.rc(\"font\",family='YouYuan')\nprint(os.getcwd())  # 获取当前工作目录\nnotebook_dir= os.getcwd()  # 获取 Jupyter Notebook 的当前工作目录\nexcel_file = os.path.join(notebook_dir,'EXCEL练习(共有12个数据表).xls')  # 拼接 Excel 文件的路径\ndf = pd.read_excel(excel_file,sheet_name='分类汇总',header=5)\ndf['平均捐款额']=df['捐款额']/df['人数']\nprint(df)"
+  },
+  {
+    "input": "EXCEL练习(共有12个数据表).xls中，请对工作表“分类汇总”以平均捐款额绘制柱状图",
+    "output": "!pip install xlwt\n!pip install xlrd\n!pip install nump\nimport xlrd\nimport xlwt\nimport pandas as pd\nimport os\nimport numpy as np\nmatplotlib.rc(\"font\",family='YouYuan')\nprint(os.getcwd())  # 获取当前工作目录\nnotebook_dir= os.getcwd()  # 获取 Jupyter Notebook 的当前工作目录\nexcel_file = os.path.join(notebook_dir,'EXCEL练习(共有12个数据表).xls')  # 拼接 Excel 文件的路径\ndf = pd.read_excel(excel_file,sheet_name='分类汇总',header=5)\ndf['平均捐款额']=df['捐款额']/df['人数']\ndf.plot.bar(x='班别',y='平均捐款额')\nplt.show()"
+  },
+  {
+    "input": "EXCEL练习(共有12个数据表).xls中，请对工作表“数据透视表”给出两年不同车间，不同小组的盈利",
+    "output": "!pip install xlwt\n!pip install xlrd\n!pip install nump\nimport xlrd\nimport xlwt\nimport pandas as pd\nimport os\nimport numpy as np\nmatplotlib.rc(\"font\",family='YouYuan')\nprint(os.getcwd())  # 获取当前工作目录\nnotebook_dir= os.getcwd()  # 获取 Jupyter Notebook 的当前工作目录\nexcel_file = os.path.join(notebook_dir,'EXCEL练习(共有12个数据表).xls')  # 拼接 Excel 文件的路径\ndf = pd.read_excel(excel_file,sheet_name='数据透视表',header=0)\ndata=df.groupby(['车间','小组'])['利润'].sum()\nprint(data)"
+  },
+  {
+    "input": "EXCEL练习(共有12个数据表).xls中，请对工作表“数据透视表”给出利润最高的情况及利润",
+    "output": "!pip install xlwt\n!pip install xlrd\n!pip install nump\nimport xlrd\nimport xlwt\nimport pandas as pd\nimport os\nimport numpy as np\nmatplotlib.rc(\"font\",family='YouYuan')\nprint(os.getcwd())  # 获取当前工作目录\nnotebook_dir= os.getcwd()  # 获取 Jupyter Notebook 的当前工作目录\nexcel_file = os.path.join(notebook_dir,'EXCEL练习(共有12个数据表).xls')  # 拼接 Excel 文件的路径\ndf = pd.read_excel(excel_file,sheet_name='数据透视表',header=0)\nprofit_max = df['利润'].max()\nprofit_max_index = df['利润'].idxmax()\nprofit_max_row= df.loc[profit_max_index]\nprint(profit_max_row)"
+  },
+  {
+    "input": "民用汽车拥有量汇总.xlsx中,2016年北京和上海的民用汽车拥有量分别是多少",
+    "output": "!pip install xlwt\n!pip install xlrd\n!pip install nump\nimport xlrd\nimport xlwt\nimport pandas as pd\nimport os\nimport numpy as np\nmatplotlib.rc(\"font\",family='YouYuan')\nprint(os.getcwd())  # 获取当前工作目录\nnotebook_dir= os.getcwd()  # 获取 Jupyter Notebook 的当前工作目录\nexcel_file = os.path.join(notebook_dir,'民用汽车拥有量汇总.xlsx') # 拼接 Excel 文件的路径\ndf = pd.read_excel(excel_file,sheet_name='民用汽车拥有量汇总',header=4)\nyear='2016年'\ncity1='北京'\ncity2='上海'\ncar_num_city1=df.loc[df['省份']==city1,year].values[0]\ncar_num_city2=df.loc[df['省份']==city2,year].values[0]\nprint(f'{year},{city1}的民用汽车拥有量为：{car_num_city1}万辆')\nprint(f'{year},{city2}的民用汽车拥有量为：{car_num_city2}万辆')"
+  },
+  {
+    "input": "57民用汽车拥有量汇总.xlsx中，帮我计算出每个省份这20年的民用汽车拥有量总和，结果储存在最后一列。",
+    "output": "!pip install xlwt\n!pip install xlrd\n!pip install nump\nimport xlrd\nimport xlwt\nimport pandas as pd\nimport os\nimport numpy as np\nmatplotlib.rc(\"font\",family='YouYuan')\nprint(os.getcwd())  # 获取当前工作目录\nnotebook_dir= os.getcwd()  # 获取 Jupyter Notebook 的当前工作目录\nexcel_file = os.path.join(notebook_dir,'民用汽车拥有量汇总.xlsx') # 拼接 Excel 文件的路径\ndf = pd.read_excel(excel_file,sheet_name='民用汽车拥有量汇总',header=4)\ndf['总和']=df.iloc[:,1:].sum(axis=1)\ndf.to_excel(file_name,index=False)\nprint(df)"
+  },
+  {
+    "input": "民用汽车拥有量汇总.xlsx中,绘制2010年全国各省汽车拥有量的饼图",
+    "output": "!pip install xlwt\n!pip install xlrd\n!pip install nump\nimport xlrd\nimport xlwt\nimport pandas as pd\nimport os\nimport numpy as np\nmatplotlib.rc(\"font\",family='YouYuan')\nprint(os.getcwd())  # 获取当前工作目录\nnotebook_dir= os.getcwd()  # 获取 Jupyter Notebook 的当前工作目录\nexcel_file = os.path.join(notebook_dir,'民用汽车拥有量汇总.xlsx') # 拼接 Excel 文件的路径\ndf = pd.read_excel(excel_file,sheet_name='民用汽车拥有量汇总',header=4)\nplt.pie(df['2010年'],labels=df['省份'],autopct='%1.1f%%')\nplt.title('2010年全国各省汽车拥有量分布')\nplt.axis('equal')\nplt.tight_layout()\nplt.show()"
+  }
+]
